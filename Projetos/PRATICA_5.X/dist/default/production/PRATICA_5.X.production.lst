@@ -1,0 +1,398 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Tue Oct 21 21:36:05 2025
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og9 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    10                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    11  0000                     
+    12                           ; Version 2.10
+    13                           ; Generated 31/07/2019 GMT
+    14                           ; 
+    15                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    16                           ; All rights reserved.
+    17                           ; 
+    18                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    19                           ; 
+    20                           ; Redistribution and use in source and binary forms, with or without modification, are
+    21                           ; permitted provided that the following conditions are met:
+    22                           ; 
+    23                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    24                           ;        conditions and the following disclaimer.
+    25                           ; 
+    26                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    27                           ;        of conditions and the following disclaimer in the documentation and/or other
+    28                           ;        materials provided with the distribution.
+    29                           ; 
+    30                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    31                           ;        software without specific prior written permission.
+    32                           ; 
+    33                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    34                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    35                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    36                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    37                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    38                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    39                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    40                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    41                           ; 
+    42                           ; 
+    43                           ; Code-generator required, PIC18F4550 Definitions
+    44                           ; 
+    45                           ; SFR Addresses
+    46  0000                     _PORTB	set	3969
+    47  0000                     _LATD	set	3980
+    48  0000                     _TRISD	set	3989
+    49  0000                     _TRISB	set	3987
+    50  0000                     _ADCON1	set	4033
+    51  0000                     _INTCON2bits	set	4081
+    52                           
+    53                           ; #config settings
+    54  0000                     
+    55                           	psect	cinit
+    56  007FC0                     __pcinit:
+    57                           	opt callstack 0
+    58  007FC0                     start_initialization:
+    59                           	opt callstack 0
+    60  007FC0                     __initialization:
+    61                           	opt callstack 0
+    62  007FC0                     end_of_initialization:
+    63                           	opt callstack 0
+    64  007FC0                     __end_of__initialization:
+    65                           	opt callstack 0
+    66  007FC0  0100               	movlb	0
+    67  007FC2  EFE3  F03F         	goto	_main	;jump to C main() function
+    68                           
+    69                           	psect	cstackCOMRAM
+    70  000001                     __pcstackCOMRAM:
+    71                           	opt callstack 0
+    72  000001                     count_bits@num:
+    73                           	opt callstack 0
+    74                           
+    75                           ; 1 bytes @ 0x0
+    76  000001                     	ds	1
+    77  000002                     count_bits@mask:
+    78                           	opt callstack 0
+    79                           
+    80                           ; 1 bytes @ 0x1
+    81  000002                     	ds	1
+    82  000003                     
+    83                           ; 1 bytes @ 0x2
+    84 ;;
+    85 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    86 ;;
+    87 ;; *************** function _main *****************
+    88 ;; Defined at:
+    89 ;;		line 21 in file "ex04.c"
+    90 ;; Parameters:    Size  Location     Type
+    91 ;;		None
+    92 ;; Auto vars:     Size  Location     Type
+    93 ;;		None
+    94 ;; Return value:  Size  Location     Type
+    95 ;;                  1    wreg      void 
+    96 ;; Registers used:
+    97 ;;		wreg, status,2, status,0, cstack
+    98 ;; Tracked objects:
+    99 ;;		On entry : 0/0
+   100 ;;		On exit  : 0/0
+   101 ;;		Unchanged: 0/0
+   102 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   103 ;;      Params:         0       0       0       0       0       0       0       0       0
+   104 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   105 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   106 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   107 ;;Total ram usage:        0 bytes
+   108 ;; Hardware stack levels required when called:    1
+   109 ;; This function calls:
+   110 ;;		_count_bits
+   111 ;; This function is called by:
+   112 ;;		Startup code after reset
+   113 ;; This function uses a non-reentrant model
+   114 ;;
+   115                           
+   116                           	psect	text0
+   117  007FC6                     __ptext0:
+   118                           	opt callstack 0
+   119  007FC6                     _main:
+   120                           	opt callstack 30
+   121                           
+   122                           ;ex04.c: 23: INTCON2bits.RBPU = 0;
+   123                           
+   124                           ;incstack = 0
+   125  007FC6  9EF1               	bcf	241,7,c	;volatile
+   126                           
+   127                           ;ex04.c: 24: ADCON1 = 0x0F;
+   128  007FC8  0E0F               	movlw	15
+   129  007FCA  6EC1               	movwf	193,c	;volatile
+   130                           
+   131                           ;ex04.c: 26: TRISB = 0xFF;
+   132  007FCC  6893               	setf	147,c	;volatile
+   133                           
+   134                           ;ex04.c: 27: TRISD = 0x00;
+   135  007FCE  0E00               	movlw	0
+   136  007FD0  6E95               	movwf	149,c	;volatile
+   137  007FD2                     l798:
+   138                           
+   139                           ;ex04.c: 30: LATD = ~(count_bits());
+   140  007FD2  ECEE  F03F         	call	_count_bits	;wreg free
+   141  007FD6  0AFF               	xorlw	255
+   142  007FD8  6E8C               	movwf	140,c	;volatile
+   143  007FDA  D7FB               	goto	l798
+   144  007FDC                     __end_of_main:
+   145                           	opt callstack 0
+   146                           
+   147 ;; *************** function _count_bits *****************
+   148 ;; Defined at:
+   149 ;;		line 35 in file "ex04.c"
+   150 ;; Parameters:    Size  Location     Type
+   151 ;;		None
+   152 ;; Auto vars:     Size  Location     Type
+   153 ;;  mask            1    1[COMRAM] unsigned char 
+   154 ;;  num             1    0[COMRAM] unsigned char 
+   155 ;; Return value:  Size  Location     Type
+   156 ;;                  1    wreg      unsigned char 
+   157 ;; Registers used:
+   158 ;;		wreg, status,2, status,0
+   159 ;; Tracked objects:
+   160 ;;		On entry : 0/0
+   161 ;;		On exit  : 0/0
+   162 ;;		Unchanged: 0/0
+   163 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   164 ;;      Params:         0       0       0       0       0       0       0       0       0
+   165 ;;      Locals:         2       0       0       0       0       0       0       0       0
+   166 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   167 ;;      Totals:         2       0       0       0       0       0       0       0       0
+   168 ;;Total ram usage:        2 bytes
+   169 ;; Hardware stack levels used:    1
+   170 ;; This function calls:
+   171 ;;		Nothing
+   172 ;; This function is called by:
+   173 ;;		_main
+   174 ;; This function uses a non-reentrant model
+   175 ;;
+   176                           
+   177                           	psect	text1
+   178  007FDC                     __ptext1:
+   179                           	opt callstack 0
+   180  007FDC                     _count_bits:
+   181                           	opt callstack 30
+   182                           
+   183                           ;ex04.c: 37: unsigned char num = 0x00;
+   184                           
+   185                           ;incstack = 0
+   186  007FDC  0E00               	movlw	0
+   187  007FDE  6E01               	movwf	count_bits@num^0,c
+   188                           
+   189                           ;ex04.c: 39: for(unsigned char mask = 0x01; mask != 0; mask = mask << 1)
+   190  007FE0  0E01               	movlw	1
+   191  007FE2  6E02               	movwf	count_bits@mask^0,c
+   192  007FE4                     l780:
+   193                           
+   194                           ;ex04.c: 40: if((~PORTB & mask) != 0)
+   195  007FE4  5081               	movf	129,w,c	;volatile
+   196  007FE6  0AFF               	xorlw	255
+   197  007FE8  1402               	andwf	count_bits@mask^0,w,c
+   198  007FEA  0900               	iorlw	0
+   199  007FEC  A4D8               	btfss	status,2,c
+   200                           
+   201                           ;ex04.c: 41: num += 0x01;
+   202  007FEE  2A01               	incf	count_bits@num^0,f,c
+   203  007FF0  5002               	movf	count_bits@mask^0,w,c
+   204  007FF2  2402               	addwf	count_bits@mask^0,w,c
+   205  007FF4  6E02               	movwf	count_bits@mask^0,c
+   206  007FF6  5002               	movf	count_bits@mask^0,w,c
+   207  007FF8  A4D8               	btfss	status,2,c
+   208  007FFA  D7F4               	goto	l780
+   209                           
+   210                           ;ex04.c: 43: return num;
+   211  007FFC  5001               	movf	count_bits@num^0,w,c
+   212  007FFE  0012               	return		;funcret
+   213  008000                     __end_of_count_bits:
+   214                           	opt callstack 0
+   215  0000                     
+   216                           	psect	rparam
+   217  0000                     tosu	equ	0xFFF
+   218                           tosh	equ	0xFFE
+   219                           tosl	equ	0xFFD
+   220                           stkptr	equ	0xFFC
+   221                           pclatu	equ	0xFFB
+   222                           pclath	equ	0xFFA
+   223                           pcl	equ	0xFF9
+   224                           tblptru	equ	0xFF8
+   225                           tblptrh	equ	0xFF7
+   226                           tblptrl	equ	0xFF6
+   227                           tablat	equ	0xFF5
+   228                           prodh	equ	0xFF4
+   229                           prodl	equ	0xFF3
+   230                           indf0	equ	0xFEF
+   231                           postinc0	equ	0xFEE
+   232                           postdec0	equ	0xFED
+   233                           preinc0	equ	0xFEC
+   234                           plusw0	equ	0xFEB
+   235                           fsr0h	equ	0xFEA
+   236                           fsr0l	equ	0xFE9
+   237                           wreg	equ	0xFE8
+   238                           indf1	equ	0xFE7
+   239                           postinc1	equ	0xFE6
+   240                           postdec1	equ	0xFE5
+   241                           preinc1	equ	0xFE4
+   242                           plusw1	equ	0xFE3
+   243                           fsr1h	equ	0xFE2
+   244                           fsr1l	equ	0xFE1
+   245                           bsr	equ	0xFE0
+   246                           indf2	equ	0xFDF
+   247                           postinc2	equ	0xFDE
+   248                           postdec2	equ	0xFDD
+   249                           preinc2	equ	0xFDC
+   250                           plusw2	equ	0xFDB
+   251                           fsr2h	equ	0xFDA
+   252                           fsr2l	equ	0xFD9
+   253                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      2       2
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_count_bits
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      75
+                         _count_bits
+ ---------------------------------------------------------------------------------
+ (1) _count_bits                                           2     2      0      75
+                                              0 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _count_bits
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      2       2       1        2.1%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Tue Oct 21 21:36:05 2025
+
+                    l780 7FE4                      l798 7FD2             __CFG_FOSC$HS 000000  
+           __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000                     _LATD 000F8C  
+           __CFG_PWRT$ON 000000                     _main 7FC6                     start 0000  
+          __CFG_MCLRE$ON 000000             ___param_bank 000000                    ?_main 0001  
+                  _PORTB 000F81                    _TRISB 000F93                    _TRISD 000F95  
+                  status 000FD8           count_bits@mask 0002          __initialization 7FC0  
+           __end_of_main 7FDC                   ??_main 0003            __activetblptr 000000  
+                 _ADCON1 000FC1           __CFG_XINST$OFF 000000               __accesstop 0060  
+__end_of__initialization 7FC0          __CFG_PBADEN$OFF 000000            ___rparam_used 000001  
+         __pcstackCOMRAM 0001               _count_bits 7FDC                  __Hparam 0000  
+                __Lparam 0000                  __pcinit 7FC0                  __ramtop 0800  
+                __ptext0 7FC6                  __ptext1 7FDC     end_of_initialization 7FC0  
+            ?_count_bits 0001            count_bits@num 0001      start_initialization 7FC0  
+    __size_of_count_bits 0024              _INTCON2bits 000FF1             ??_count_bits 0001  
+               __Hrparam 0000                 __Lrparam 0000       __end_of_count_bits 8000  
+          __size_of_main 0016    __CFG_CPUDIV$OSC1_PLL2 000000  
